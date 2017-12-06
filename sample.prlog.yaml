@@ -1,0 +1,11 @@
+git-token: YOUR-GIT-TOKEN
+
+pr-labels:
+  features: 
+    - Enhancement
+  fixes:
+    - fix
+    - Bug
+  internal:
+    - refactor
+    - infra
