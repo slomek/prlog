@@ -37,6 +37,8 @@ First, you need to create a configuration YAML file (by default it is searched f
             - refactor
             - infra
 
+Your `git-token` can be obtained from Github, under _Settings_ -> _Developer settings_ -> _Personal access tokens_ -> _Generate new token_. Its scope should include _repo_ group, nothing else is necessary. After clicking _Generate token_ you need to save the value somewhere, or paste to the your `prlog.yaml` directly. 
+
 The `pr-labels` property works as follows: if a PR has a label _Enhancement_, it will be listed under a group called _features_ in the changelog. The _fixes_ group will contain all PRs having labels _fix_ or _bug_. Any PRs that are not assigned to any of the defined groups will land in _other_ section.
 
 ### Usage
