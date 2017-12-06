@@ -4,7 +4,20 @@ The idea behind prlog is to join information stored in `git` history and GitHub'
 
 ## Installation
 
-In order to install the application, you need to `go get` it.
+In order to install the application, you need to `go get` it:
+
+    $ go get -u github.com/slomek/prlog
+
+    $ prlog
+    Parameters 'repo', 'from' and 'to' are required:
+    -config string
+            last commit of the changelog (default "/Users/slomek/.prlog.yaml")
+    -from string
+            first commit of the changelog
+    -repo string
+            'organization/name' of repository
+    -to string
+            last commit of the changelog
 
 ## Usage
 
