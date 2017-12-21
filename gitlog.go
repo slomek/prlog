@@ -23,6 +23,7 @@ func mergedPrs() ([]int, error) {
 		return nil, errors.Wrap(err, "failed to list local git history")
 	}
 	gitLog := string(out.Bytes())
+	commits := strings.Split(gitLog, "\n")
 
 	var re = regexp.MustCompile(`#\d+`)
 
@@ -33,7 +34,29 @@ func mergedPrs() ([]int, error) {
 		if err != nil {
 			continue
 		}
+		if findRevertCommit(commits, match) {
+			continue
+		}
 		prs = append(prs, prNo)
 	}
 	return prs, nil
+}
+
+func findRevertCommit(commits []string, prHash string) bool {
+	for _, c := range commits {
+		if hasRevertPrefix(c) && strings.Contains(c, prHash) {
+			return true
+		}
+	}
+	return false
+}
+
+// hasRevertPrefix checks if the commit message (which starts at the 8th character)
+/// starts with 'Revert' which may be an indication that it is a PR revert commit.
+func hasRevertPrefix(msg string) bool {
+	if len(msg) < 14 {
+		return false
+	}
+
+	return msg[8:14] == "Revert"
 }
