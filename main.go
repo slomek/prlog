@@ -79,13 +79,15 @@ func main() {
 }
 
 func printPRs(title string, prs []PullRequest) {
-	if len(prs) != 0 {
-		fmt.Printf("%s:\n", strings.Title(title))
-		for _, pr := range prs {
-			fmt.Printf(" - %s (#%d)\n", pr.Title, pr.Number)
-		}
-		fmt.Println()
+	if len(prs) == 0 {
+		return
 	}
+
+	fmt.Printf("%s:\n", strings.Title(title))
+	for _, pr := range prs {
+		fmt.Printf(" - %s (#%d) [%s]\n", pr.Title, pr.Number, pr.Author.Login)
+	}
+	fmt.Println()
 }
 
 func pullRequestDesc(no int, all []PullRequest) (PullRequest, error) {
