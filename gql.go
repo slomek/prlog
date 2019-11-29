@@ -41,6 +41,9 @@ const queryFmt = `{
 							name
 						}
 					}
+					author {
+						login
+					}
 				}
 			}
 		}
@@ -63,6 +66,9 @@ type PullRequest struct {
 			Name string `json:"name,omitempty"`
 		} `json:"nodes,omitempty"`
 	} `json:"labels,omitempty"`
+	Author struct {
+		Login string `json:"login,omitempty"`
+	} `json:"author,omitempty"`
 }
 
 func (pr PullRequest) LabelNames() []string {
