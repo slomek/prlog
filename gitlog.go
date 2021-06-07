@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"github.com/spf13/viper"
 	"os"
 	"os/exec"
 	"regexp"
@@ -13,9 +14,17 @@ import (
 )
 
 func mergedPrs() ([]int, error) {
-	gitDirArg := fmt.Sprintf("--git-dir=%s/src/github.com/%s/.git", os.Getenv("GOPATH"), repo)
 	commitArg := fmt.Sprintf("%s..%s", fromCommit, toCommit)
-	cmd := exec.Command("git", gitDirArg, "log", "--oneline", commitArg)
+
+	var cmd *exec.Cmd
+
+	if local := viper.GetBool("local-only"); local {
+		cmd = exec.Command("git", "log", "--oneline", commitArg)
+	} else {
+		gitDirArg := fmt.Sprintf("--git-dir=%s/src/github.com/%s/.git", os.Getenv("GOPATH"), repo)
+		cmd = exec.Command("git", gitDirArg, "log", "--oneline", commitArg)
+	}
+
 	var out bytes.Buffer
 	cmd.Stdout = &out
 	cmd.Stderr = os.Stderr

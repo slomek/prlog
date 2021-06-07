@@ -26,13 +26,13 @@ func init() {
 	flag.StringVar(&configPath, "config", defaultConfigPath, "last commit of the changelog")
 
 	viper.SetConfigType("yaml")
-
 }
 
 func main() {
 	flag.Parse()
 
 	viper.SetDefault("git-token", os.Getenv("PRLOG_GIT_TOKEN"))
+	viper.SetDefault("local-only", false)
 
 	if configPath != "" {
 		viper.SetConfigFile(configPath)
