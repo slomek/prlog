@@ -23,7 +23,7 @@ func init() {
 	flag.StringVar(&repo, "repo", "", "'organization/name' of repository")
 	flag.StringVar(&fromCommit, "from", "", "first commit of the changelog")
 	flag.StringVar(&toCommit, "to", "", "last commit of the changelog")
-	flag.StringVar(&configPath, "config", defaultConfigPath, "last commit of the changelog")
+	flag.StringVar(&configPath, "config", defaultConfigPath, "path to the config file")
 
 	viper.SetConfigType("yaml")
 }
