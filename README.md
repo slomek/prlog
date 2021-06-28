@@ -11,7 +11,7 @@ In order to install the application, you need to `go get` it:
     $ prlog
     Parameters 'repo', 'from' and 'to' are required:
     -config string
-            last commit of the changelog (default "/Users/slomek/.prlog.yaml")
+            path to the config file (default "/Users/slomek/.prlog.yaml")
     -from string
             first commit of the changelog
     -repo string
@@ -26,6 +26,8 @@ In order to install the application, you need to `go get` it:
 First, you need to create a configuration YAML file (by default it is searched for in `${HOME}/.prlog.yaml`):
 
     git-token: YOUR-GIT-TOKEN
+
+    local-only: true # add only if you are using Go modules in your project
 
     pr-labels:
         features: 
